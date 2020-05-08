@@ -1,7 +1,7 @@
 {
   "name": "confetti-cuisine",
   "version": "0.0.0",
-  "description": "",
+  "description": "A site for booking classes for cooking",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/khvorov45/confetti-cuisine/issues"
   },
-  "homepage": "https://github.com/khvorov45/confetti-cuisine#readme"
+  "homepage": "https://github.com/khvorov45/confetti-cuisine#readme",
+  "dependencies": {
+    "http-status-codes": "^1.4.0"
+  }
 }
