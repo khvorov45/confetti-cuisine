@@ -19,6 +19,8 @@ app.use(
 )
 app.use(express.json())
 
+app.use(express.static('public'))
+
 app.get('/', homeController.showHome)
 app.get('/courses', homeController.showCourses)
 app.get('/contact', homeController.showSignUp)
