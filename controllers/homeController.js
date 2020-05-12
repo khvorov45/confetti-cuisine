@@ -7,3 +7,6 @@ exports.showSignUp = (req, res) => {
 exports.postedSignUpForm = (req, res) => {
   res.render('thanks')
 }
+exports.showHome = (req, res) => {
+  res.render('index')
+}
