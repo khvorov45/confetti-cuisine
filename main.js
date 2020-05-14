@@ -2,21 +2,18 @@
 
 const express = require('express')
 const layouts = require('express-ejs-layouts')
-const mongodb = require('mongodb').MongoClient
+const mongoose = require('mongoose')
 
 const homeController = require('./controllers/homeController')
 const errorController = require('./controllers/errorController')
 
-const dburl = 'mongodb://localhost:27017'
-const dbname = 'recipe_db'
+const dburl = 'mongodb://localhost:27017/recipe_db'
 
-mongodb.connect(dburl, (error, client) => {
-  if (error) throw error
-  const db = client.db(dbname)
-  db.collection('contacts').find().toArray((error, data) => {
-    if (error) throw error
-    console.log(data)
-  })
+mongoose.connect(dburl, { useNewUrlParser: true })
+const db = mongoose.connection
+
+db.once('open', () => {
+  console.log('Successfully connected to MongoDB using Mongoose')
 })
 
 const app = express()
