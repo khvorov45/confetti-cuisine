@@ -2,9 +2,22 @@
 
 const express = require('express')
 const layouts = require('express-ejs-layouts')
+const mongodb = require('mongodb').MongoClient
 
 const homeController = require('./controllers/homeController')
 const errorController = require('./controllers/errorController')
+
+const dburl = 'mongodb://localhost:27017'
+const dbname = 'recipe_db'
+
+mongodb.connect(dburl, (error, client) => {
+  if (error) throw error
+  const db = client.db(dbname)
+  db.collection('contacts').find().toArray((error, data) => {
+    if (error) throw error
+    console.log(data)
+  })
+})
 
 const app = express()
 
