@@ -7,6 +7,8 @@ const mongoose = require('mongoose')
 const homeController = require('./controllers/homeController')
 const errorController = require('./controllers/errorController')
 
+const Subscriber = require('./models/subscriber')
+
 const dburl = 'mongodb://localhost:27017/recipe_db'
 
 mongoose.connect(dburl, { useNewUrlParser: true })
@@ -15,6 +17,27 @@ const db = mongoose.connection
 db.once('open', () => {
   console.log('Successfully connected to MongoDB using Mongoose')
 })
+
+var subscriber1 = new Subscriber({
+  name: 'Jon Wexler',
+  email: 'jon@jonwexler.com'
+})
+
+subscriber1.save((error, savedDocument) => {
+  if (error) console.log(error)
+  console.log(savedDocument)
+})
+
+Subscriber.create(
+  {
+    name: 'Jon Wexler',
+    email: 'jon@jonwexler.com'
+  },
+  function (error, savedDocument) {
+    if (error) console.log(error)
+    console.log(savedDocument)
+  }
+)
 
 const app = express()
 
