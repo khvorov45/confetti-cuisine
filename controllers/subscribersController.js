@@ -29,8 +29,11 @@ exports.saveSubscriber = (req, res) => {
     zipCode: req.body.zipCode
   })
 
-  newSubscriber.save((error, result) => {
-    if (error) res.send(error)
-    res.render('thanks')
-  })
+  newSubscriber.save()
+    .then(result => {
+      res.render('thanks')
+    })
+    .catch(error => {
+      if (error) res.send(error)
+    })
 }
