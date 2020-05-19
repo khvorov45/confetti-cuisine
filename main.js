@@ -12,7 +12,7 @@ const subscribersController = require(
 
 const dburl = 'mongodb://localhost:27017/recipe_db'
 
-mongoose.connect(dburl, { useNewUrlParser: true })
+mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
 db.once('open', () => {
@@ -37,8 +37,8 @@ app.use(express.static('public'))
 
 app.get('/', homeController.showHome)
 app.get('/courses', homeController.showCourses)
-app.get('/contact', homeController.showSignUp)
-app.post('/contact', homeController.postedSignUpForm)
+app.get('/contact', subscribersController.getSubscriptionPage)
+app.post('/subscribe', subscribersController.saveSubscriber)
 app.get('/subscribers', subscribersController.getAllSubscribers,
   (req, res, next) => {
     console.log(req.data)
