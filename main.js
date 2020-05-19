@@ -10,6 +10,8 @@ const subscribersController = require(
   './controllers/subscribersController'
 )
 
+mongoose.Promise = global.Promise
+
 const dburl = 'mongodb://localhost:27017/recipe_db'
 
 mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -39,11 +41,7 @@ app.get('/', homeController.showHome)
 app.get('/courses', homeController.showCourses)
 app.get('/contact', subscribersController.getSubscriptionPage)
 app.post('/subscribe', subscribersController.saveSubscriber)
-app.get('/subscribers', subscribersController.getAllSubscribers,
-  (req, res, next) => {
-    console.log(req.data)
-    res.render('subscribers', { subscribers: req.data })
-  })
+app.get('/subscribers', subscribersController.getAllSubscribers)
 
 app.use(errorController.pageNotFoundError)
 app.use(errorController.internalServerError)
