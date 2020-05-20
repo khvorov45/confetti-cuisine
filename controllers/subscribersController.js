@@ -13,9 +13,6 @@ exports.getAllSubscribers = (req, res) => {
       console.log(error.message)
       return []
     })
-    .then(() => {
-      console.log('promise complete')
-    })
 }
 
 exports.getSubscriptionPage = (req, res) => {
