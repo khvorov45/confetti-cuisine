@@ -19,8 +19,6 @@ const subscriberSchema = mongoose.Schema({
   courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
 })
 
-module.exports = mongoose.model('Subscriber', subscriberSchema)
-
 subscriberSchema.methods.getInfo = function () {
   return `Name: ${this.name} Email: ${this.email} Zip Code:
   ${this.zipCode}`
@@ -31,3 +29,5 @@ subscriberSchema.methods.findLocalSubscribers = function () {
     .find({ zipCode: this.zipCode })
     .exec()
 }
+
+module.exports = mongoose.model('Subscriber', subscriberSchema)
